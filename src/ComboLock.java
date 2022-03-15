@@ -6,6 +6,7 @@ public class ComboLock {
         this.secret1 = secret1;
         this.secret2 = secret2;
         this.secret3 = secret3;
+        System.out.println("This Secret");
     }
     public void reset(){
         dial = 0;
@@ -19,22 +20,26 @@ public class ComboLock {
         dial += ticks;
         dial %= 40;
         lastTime = 1;
+       // System.out.print(dial);
     }
     public void turnRight(int ticks){
         if(lastTime == 1){
             userSecret[passNumber] = dial;
             passNumber++;
         }
+        //System.out.println("Right"+dial);
         dial -= ticks;
+        System.out.println(dial);
         while(dial < 0) dial += 40;
         lastTime = 0;
+
     }
     public boolean open(){
         userSecret[passNumber] = dial;
         if(secret1 == userSecret[0] && secret2 == userSecret[1] && secret3 == userSecret[2]){
             return true;
         }
-        else{
+        else {
             return false;
         }
     }
